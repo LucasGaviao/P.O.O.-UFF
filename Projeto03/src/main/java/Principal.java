@@ -6,7 +6,7 @@ public class Principal {
     public static void main(String[] args){
 
         final int TAM = Console.readInt("Informe o tamanho da lista: ");
-        ArrayList listaDeEmpregados = new ArrayList(TAM);
+        ArrayList<Empregado> listaDeEmpregados = new ArrayList<>(TAM);
 
         String nome;
         double salario;
@@ -39,24 +39,27 @@ public class Principal {
                 case 2:
                     ID = Console.readInt("Informe o ID do empregado: ");
                     boolean achou = false;
-                    for(int i = 0; i < listaDeEmpregados.size(); i++){
-                        umEmpregado = (Empregado) listaDeEmpregados.get(i);
-                        if(umEmpregado.getID() == ID){
+                    for (Empregado empregado : listaDeEmpregados) {
+                        if (empregado.getID() == ID) {
                             achou = true;
                         }
-                        if (achou){
-                            umEmpregado.setNome(Console.readLine("Atualize o Nome: "));
-                            umEmpregado.setSalario(Console.readDouble("Atualize o Salário: "));
+                        if (achou) {
+                            empregado.setNome(Console.readLine("Atualize o Nome: "));
+                            empregado.setSalario(Console.readDouble("Atualize o Salário: "));
                             break;
                         }
+                    }
+                    if(!achou){
+                        System.out.println("Este empregado não existe!");
                     }
                     break;
                 case 3:
                     ID = Console.readInt("Informe o ID do empregado: ");
                     for(int i = 0; i < listaDeEmpregados.size(); i++){
-                        umEmpregado = (Empregado) listaDeEmpregados.get(i);
+                        umEmpregado = listaDeEmpregados.get(i);
                         if(umEmpregado.getID() == ID){
                             listaDeEmpregados.remove(i);
+                            break;
                         }
                     }
 
@@ -66,9 +69,8 @@ public class Principal {
                         System.out.println('\n' + "Não há empregados na lista.");
                         break;
                     }
-                    for(int i = 0; i < listaDeEmpregados.size(); i++){
-                        umEmpregado = (Empregado) listaDeEmpregados.get(i);
-                        System.out.println(umEmpregado);
+                    for (Empregado empregado : listaDeEmpregados) {
+                        System.out.println(empregado);
                     }
                     break;
                 case 5:
@@ -76,9 +78,8 @@ public class Principal {
                         System.out.println('\n' + "Não há empregados na lista.");
                         break;
                     }
-                    for(int i = 0; i < listaDeEmpregados.size(); i++){
-                        umEmpregado = (Empregado) listaDeEmpregados.get(i);
-                        System.out.println("ID = " + umEmpregado.getID() + " Nome = " + umEmpregado.getNome());
+                    for (Empregado empregado : listaDeEmpregados) {
+                        System.out.println("ID = " + empregado.getID() + " Nome = " + empregado.getNome());
                     }
                     break;
             }
