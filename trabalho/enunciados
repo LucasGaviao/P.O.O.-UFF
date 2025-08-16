@@ -1,0 +1,28 @@
+Utilizando como base o projeto 18, implemente uma aplicação baseando-se no diagrama de classes apresentado abaixo.
+
+Siga as seguintes instruções:
+1. Implemente as operações de inclusão, exclusão e alteração para as classes com.lucasgaviao.model.Cliente e Livro. Para as demais classes, basta inclusão e remoção.
+2. Para todas as classes, só pode haver remoção de um objeto caso ele não esteja associado a nenhuma outra classe. Exemplo: um cliente só pode ser removido caso não haja nenhum pedido para ele.
+3. Acrescente à classe Fatura dois atributos derivados: o primeiro contendo o valor total da fatura e o segundo com o valor total do desconto. A partir da quarta fatura emitida (não cancelada) para um determinado cliente, ele terá terá direito a 5% de desconto no valor total da fatura.
+4. Como exceção ao item 2, caso uma fatura seja removida, todos os itens faturados devem ser removidos em cascata e o estoque deve ser atualizado.
+5. Ao se mandar faturar um pedido, é preciso verificar a quantidade disponível no estoque para cada produto listado em itens de pedido, e a cada item faturado cadastrado, devem ser atualizadas a quantidade em estoque do livro e a quantidade a faturar de ItemDePedido. Observe que um Pedido pode ser faturado mais de uma vez, caso alguma quantidades pedida de um livro não exista no estoque no momento do faturamento.
+6. Ao se faturar um pedido, caso nenhum item de pedido possa ser faturado (em virtude do estoque estar zerado para todos os itens), uma mensagem comunicando esse fato deverá ser exibida.
+7. Deve ser possível cancelar um pedido e uma fatura, informando uma data de cancelamento. Ao se cancelar uma fatura, assim como na remoção de uma fatura, o estoque dos livros deverá ser atualizado. Um cliente só terá direito de cancelar uma fatura após o faturamento de pelo menos 3 pedidos.  Só é possível cancelar um pedido se ele não tiver nenhuma fatura ou se todas as suas faturas tiverem sido canceladas.
+8. Caso uma fatura já tenha sido cancelada (já tenha sido atribuída à fatura uma data de cancelameto) ela não poderá ser removida.
+9. Em todos os casos, utilize exceções customizadas, isto é, não lance RuntimeException ou Exception.
+10. Acrescente na classe com.lucasgaviao.model.Cliente um atributo endereço e na classe Pedido um atributo endereço de entrega.
+11. Implemente os seguintes relatórios:
+    - Lista contendo a quantidade faturada, o nome do livro e a data da fatura de itens faturados de um determinado livro em um determinado mês e ano.
+    - Lista dos produtos que nunca foram faturados.
+    - Para um determinado ano e mês, a lista dos produtos faturados com a respectiva quantidade.
+12. Implemente uma simulação de envio de email utilizando thread. Um email deve ser enviado sempre que um cliente finalizar o cadastro de um pedido.
+13. Todas as informações armazenadas nos Maps definidos nas classes de implementação dos DAOs devem ser salvas em disco.
+
+Observação 1: Na versão atualizada do diagrama de classes abaixo acrescentei à classe ItemDePedido o atributo qtdAFaturar.
+
+Observação 2: Para efeito de aprovação na disciplina é fundamental que o trabalho do aluno consiga cadastrar um pedido com seus itens de pedido e que um pedido possa ser faturado corretamente.
+
+Observação 3: Status de um pedido:
+- Integralmente faturado
+- Não integralmente faturado
+- Cancelado
